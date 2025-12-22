@@ -765,53 +765,12 @@ class JmApiClient(AbstractJmClient):
 
     def setting(self) -> JmApiResp:
         """
-        禁漫app的setting请求，返回如下内容（resp.res_data）
-        {
-          "logo_path": "https://cdn-msp.jmapiproxy1.monster/media/logo/new_logo.png",
-          "main_web_host": "18-comic.work",
-          "img_host": "https://cdn-msp.jmapiproxy1.monster",
-          "base_url": "https://www.jmapinode.biz",
-          "is_cn": 0,
-          "cn_base_url": "https://www.jmapinode.biz",
-          "version": "1.6.0",
-          "test_version": "1.6.1",
-          "store_link": "https://play.google.com/store/apps/details?id=com.jiaohua_browser",
-          "ios_version": "1.6.0",
-          "ios_test_version": "1.6.1",
-          "ios_store_link": "https://18comic.vip/stray/",
-          "ad_cache_version": 1698140798,
-          "bundle_url": "https://18-comic.work/static/apk/patches1.6.0.zip",
-          "is_hot_update": true,
-          "api_banner_path": "https://cdn-msp.jmapiproxy1.monster/media/logo/channel_log.png?v=",
-          "version_info": "\nAPP & IOS更新\nV1.6.0\n#禁漫 APK 更新拉!!\n更新調整以下項目\n1. 系統優化\n\nV1.5.9\n1. 跳錯誤新增 重試 網頁 按鈕\n2. 圖片讀取優化\n3.
-          線路調整優化\n\n無法順利更新或是系統題是有風險請使用下方\n下載點2\n有問題可以到DC群反饋\nhttps://discord.gg/V74p7HM\n",
-          "app_shunts": [
-            {
-              "title": "圖源1",
-              "key": 1
-            },
-            {
-              "title": "圖源2",
-              "key": 2
-            },
-            {
-              "title": "圖源3",
-              "key": 3
-            },
-            {
-              "title": "圖源4",
-              "key": 4
-            }
-          ],
-          "download_url": "https://18-comic.work/static/apk/1.6.0.apk",
-          "app_landing_page": "https://jm365.work/pXYbfA",
-          "float_ad": true
-        }
+        禁漫app的setting请求
         """
         resp = self.req_api('/setting')
 
         # 检查禁漫最新的版本号
-        setting_ver = str(resp.model_data.version)
+        setting_ver = str(resp.model_data.jm3_version)
         # 禁漫接口的版本 > jmcomic库内置版本
         if (
                 JmModuleConfig.FLAG_USE_VERSION_NEWER_IF_BEHIND
